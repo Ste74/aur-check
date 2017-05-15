@@ -5,7 +5,7 @@ if [ -f ~/.local/.ok ] ; then
    exit 0
 fi 
    
-time=600 #time to wait before starting 300 better
+time=300 #time to wait before starting 300 better
  
 if [ -f "/usr/bin/yaourt" ] ; then
 
