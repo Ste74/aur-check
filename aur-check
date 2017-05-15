@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#check if user do ok
+if [ -f ~/.local/.ok ] ; then
+   exit 0
+fi 
+   
+time=600 #time to wait before starting 300 better
+ 
+if [ -f "/usr/bin/yaourt" ] ; then
+
+      sleep $time
+
+#window for warning
+      zenity --question --title="WARNING" --text="\nFull access to AUR detected\nnow you will be redirect to wiki page.\n\nIf you already know what is AUR press Cancel" --cancel-label="Cancel" --ok-label="Ok" ;
+      
+      if [ $? == 1 ] ; then
+         exit 0
+      fi  
+
+#firefox open links in a tabs
+      firefox https://wiki.manjaro.org/index.php/      Arch_User_Repository https://wiki.archlinux.org/index.php/Arch_User_Repository https://wiki.archlinux.org/index.php/ PKGBUILD
+
+      zenity --question --text="Read carefull this pages before install AUR programs\nPress Yes if you are AGREE" ;
+ 
+      if [ $? == 1 ] ; then
+         exit 0
+      fi  
+      touch ~/.local/.ok
+fi
